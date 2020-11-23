@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Hello</h1>
+      <peoples-list :peoples="peoples" :deleteuser="deleteuser"></peoples-list>
+      <add-user @adduser="adduser"></add-user>
+    </div>
+      
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="src/main.js"></script>
+  </body>
+</html>
