@@ -16,7 +16,7 @@ Vue.component('peoples-list', {
           <th>Lastname</th>
           <th>Age</th>
         </tr>
-        <User @deleteuser="deleteuser"v-for="user in this.peoples" :user="user"></User>  
+        <User @deleteuser="deleteuser" v-for="(user, index) in this.peoples" :user="user" :index="index"></User>  
       </table>
 
     </div>
@@ -32,11 +32,15 @@ Vue.component('User', {
   props: {
     user: {
       type: Object,
+    },
+    index: {
+      type: Number,
     }
   },
   methods: {
     log() {
-      this.$emit('deleteuser', this.user.id)
+      console.log(this.index, this.user);
+      this.$emit('deleteuser', this.index)
     }
   },
   template: `
@@ -116,9 +120,8 @@ var app = new Vue({
       this.peoples.push(user);
       console.log(this.peoples);
     },
-    deleteuser(id) {
-       const deleteItemIndex = this.peoples.findIndex(element => element.id === id);
-       this.peoples.splice(deleteItemIndex, 1);
+    deleteuser(index) {
+       this.peoples.splice(index, 1);
       // changing props below and it works
       // (this.peoples.find(element => element.id === id).name = "swat");
     }
